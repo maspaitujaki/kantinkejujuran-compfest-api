@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"seleksi-compfest-backend/controller"
 	"seleksi-compfest-backend/database"
 	"seleksi-compfest-backend/entity"
@@ -15,6 +16,7 @@ import (
 
 func main() {
 	initDB()
+	initFileSystem()
 
 	router := mux.NewRouter().StrictSlash(true)
 	initializeHandlers(router)
@@ -53,6 +55,18 @@ func initializeHandlers(router *mux.Router) {
 	router.HandleFunc("/balance", controller.UpdateBalance).Methods("POST")
 	router.HandleFunc("/balance/add", controller.AddBalance).Methods("POST")
 	router.HandleFunc("/balance/substract", controller.SubstractBalance).Methods("POST")
+}
+
+func initFileSystem() {
+	dir, err := os.Getwd()
+	if err != nil {
+		log.Println("Error getting current directory: ", err)
+	}
+	assetsImagePath := filepath.Join(dir, "assets/images")
+	err = os.Mkdir(assetsImagePath, 0700)
+	if err != nil {
+		panic("Error creating img directory: " + err.Error())
+	}
 }
 
 func initDB() {
