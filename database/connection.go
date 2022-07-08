@@ -23,5 +23,6 @@ func Connect(connectionString string) error {
 
 func MigrateProduct(table *entity.Product) {
 	Connector.AutoMigrate(&table)
+	Connector.Session(&gorm.Session{AllowGlobalUpdate: true}).Delete(&table)
 	log.Println("Migrated table product")
 }
