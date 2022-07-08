@@ -16,7 +16,7 @@ import (
 
 func main() {
 	initDB()
-	initFileSystem()
+	// initFileSystem()
 
 	router := mux.NewRouter().StrictSlash(true)
 	initializeHandlers(router)
