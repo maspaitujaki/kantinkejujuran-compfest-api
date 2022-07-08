@@ -25,7 +25,7 @@ func main() {
 		port = "8080"
 	}
 	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"*", "http://localhost:3000", "https://kantin-kejujuran-dimasfm.herokuapp.com/"},
+		AllowedOrigins:   []string{"*", "http://localhost:3000", "https://kantin-kejujuran-dimasfm.herokuapp.com"},
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
 		AllowCredentials: true,
 	})
